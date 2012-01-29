@@ -7,11 +7,13 @@
 //
 
 #import "CalculatorViewController.h"
+#import "CalculatorBrain.h"
 
 
 // place for us to put private instance variables
 @interface CalculatorViewController() 
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
+@property (nonatomic, strong) CalculatorBrain *brain;
 @end
 
 @implementation CalculatorViewController
@@ -23,6 +25,13 @@
 // be the same as the property
 @synthesize display = _display;
 
+@synthesize brain = _brain;
+
+- (CalculatorBrain *) brain {
+    // initialize if nil
+    if(!_brain) _brain = [[CalculatorBrain alloc] init];
+    return _brain;
+}
 
 // we also need get setters and getters for our private properties
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
@@ -46,9 +55,15 @@
 }
 
 - (IBAction)enterPressed {
+    [self.brain pushOperand:[self.display.text doubleValue]];
+    self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
 - (IBAction)operationPressed:(UIButton *)sender {
+    if (self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
+    double result = [self.brain performOperation:sender.currentTitle];
+    NSString *resultString = [NSString stringWithFormat:@"%g", result];
+    self.display.text = resultString;
 }
 
 
