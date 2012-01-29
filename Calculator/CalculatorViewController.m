@@ -8,6 +8,12 @@
 
 #import "CalculatorViewController.h"
 
+
+// place for us to put private instance variables
+@interface CalculatorViewController() 
+@property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
+@end
+
 @implementation CalculatorViewController
 
 // creates the setter and getter methods for us.
@@ -18,13 +24,24 @@
 @synthesize display = _display;
 
 
+// we also need get setters and getters for our private properties
+@synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
+
 // we changed from the type id -- which basically can be any Object --
 // to the more specific UIButton (because we know it's a UIButton).
 // This shortens the code insight suggestions given by xcode.
 - (IBAction)digitPressed:(UIButton *)sender {
 
-    NSString *digit = [sender currentTitle];
+    NSString *digit = sender.currentTitle;
     NSLog(@"digit pressed = %@", digit);
+    
+    if (self.userIsInTheMiddleOfEnteringANumber) {
+        // append the pressed digit to the display
+        self.display.text = [self.display.text stringByAppendingFormat:digit];
+    } else {
+        self.display.text = digit;
+        self.userIsInTheMiddleOfEnteringANumber = YES;
+    }
 }
 
 
