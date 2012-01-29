@@ -35,6 +35,7 @@
     NSString *digit = sender.currentTitle;
     NSLog(@"digit pressed = %@", digit);
     
+    // we only append the pressed digit if we typed already a number
     if (self.userIsInTheMiddleOfEnteringANumber) {
         // append the pressed digit to the display
         self.display.text = [self.display.text stringByAppendingFormat:digit];
@@ -44,6 +45,11 @@
     }
 }
 
+- (IBAction)enterPressed {
+}
+
+- (IBAction)operationPressed:(UIButton *)sender {
+}
 
 
 @end
