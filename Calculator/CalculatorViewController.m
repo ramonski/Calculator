@@ -10,51 +10,23 @@
 
 @implementation CalculatorViewController
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+// creates the setter and getter methods for us.
+// 
+// the name _display will be used inside the getter and setter.
+// it is always a good idea to set the name. Otherwise the name will
+// be the same as the property
+@synthesize display = _display;
+
+
+// we changed from the type id -- which basically can be any Object --
+// to the more specific UIButton (because we know it's a UIButton).
+// This shortens the code insight suggestions given by xcode.
+- (IBAction)digitPressed:(UIButton *)sender {
+
+    NSString *digit = [sender currentTitle];
+    NSLog(@"digit pressed = %@", digit);
 }
 
-#pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
 
 @end
