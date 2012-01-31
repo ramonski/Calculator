@@ -13,5 +13,5 @@
 // declaration
 - (void) pushOperand:(double)operand;
 - (double)performOperation:(NSString *)operation;
-
+- (void)clearStack;
 @end

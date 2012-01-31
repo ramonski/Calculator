@@ -15,8 +15,8 @@
 
 @implementation CalculatorBrain
 
-
 @synthesize operandStack = _operandStack;
+
 
 // setter for our stack
 - (NSMutableArray *)operandStack {
@@ -38,6 +38,12 @@
     NSNumber *operandObject = [self.operandStack lastObject];
     if (operandObject) [self.operandStack removeLastObject];
     return [operandObject doubleValue];
+}
+
+- (void)clearStack {
+    NSLog(@"CLEAR STACK! Items = %d", [self.operandStack count]);
+    [self.operandStack removeAllObjects];
+    NSLog(@"DONE");
 }
 
 // the logic is implemented here
