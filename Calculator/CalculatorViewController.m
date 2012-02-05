@@ -27,6 +27,7 @@
 //
 // synthesize the display
 @synthesize display = _display;
+@synthesize stackdisplay = _stackdisplay;
 
 
 // synthesize the calculator brain
@@ -66,6 +67,7 @@
 - (IBAction)enterPressed {
     [self.brain pushOperand:[self.display.text doubleValue]];
     self.userIsInTheMiddleOfEnteringANumber = NO;
+    self.stackdisplay.text = [self.brain showStack];
 }
 
 // OPERATORS
@@ -74,13 +76,15 @@
     double result = [self.brain performOperation:sender.currentTitle];
     NSString *resultString = [NSString stringWithFormat:@"%g", result];
     self.display.text = resultString;
+    self.stackdisplay.text = [self.brain showStack];
 }
 
-- (IBAction)acPressed {
+// C Pressed
+- (IBAction)cPressed {
     [[self brain] clearStack];
-    
+    self.display.text = @"0";
+    self.stackdisplay.text = [self.brain showStack];
 }
-
 
 
 @end
