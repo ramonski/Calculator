@@ -86,5 +86,17 @@
     self.stackdisplay.text = [self.brain showStack];
 }
 
+// BACKSPACE PRESSED
+- (IBAction)backspacePressed {
+    
+    if ([self.display.text length] > 1) {
+        NSLog(@"Current text in display is %@", self.display.text);
+        self.display.text = [self.display.text substringToIndex:[self.display.text length]-1];
+    } else {
+        NSLog(@"Current text == 0");
+        self.display.text = @"0";
+        self.userIsInTheMiddleOfEnteringANumber = NO;
+    }
+}
 
 @end
