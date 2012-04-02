@@ -13,6 +13,16 @@
 // declaration
 - (void) pushOperand:(double)operand;
 - (double)performOperation:(NSString *)operation;
+
+@property (readonly) id program;
+
 - (void)clearStack;
 - (NSString *)showStack;
+
+
+// Classmethods
++ (double) runProgram:(id)program;
++ (NSString *)descriptionOfProgram:(id)program;
++ (double) popOperandOffStack:(NSMutableArray *)stack;
+
 @end
